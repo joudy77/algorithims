@@ -30,8 +30,10 @@ public class Dice {
         PROBABILITIES.put(1, 4.0 / 16.0);   // 0.25
         PROBABILITIES.put(2, 6.0 / 16.0);   // 0.375
         PROBABILITIES.put(3, 4.0 / 16.0);   // 0.25
-        PROBABILITIES.put(4, 0.0);          // Not a valid roll
-        PROBABILITIES.put(5, 2.0 / 16.0);   // 0.125 (two cases)
+        // PROBABILITIES.put(4, 0.0);          // Not a valid roll 
+        // PROBABILITIES.put(5, 2.0 / 16.0);   // 0.125 (two cases)
+        PROBABILITIES.put(4,  1.0 / 16.0); //0.0625        
+        PROBABILITIES.put(5, 1.0 / 16.0);   //0.0625 
     }
     
     /**
@@ -48,9 +50,13 @@ public class Dice {
         }
         
         // Calculate result according to rules
-        if (lightSide == 0 || lightSide == 4) {
+        if (lightSide == 0 ) {
             return 5;
         }
+        // if (lightSide == 0 || lightSide == 4) {
+        //     return 5;
+        // }
+
         return lightSide;
     }
     
@@ -95,7 +101,9 @@ public class Dice {
         System.out.println("- Roll 1: 4 cases (1 light, 3 dark) = 4/16 = 25%");
         System.out.println("- Roll 2: 6 cases (2 light, 2 dark) = 6/16 = 37.5%");
         System.out.println("- Roll 3: 4 cases (3 light, 1 dark) = 4/16 = 25%");
-        System.out.println("- Roll 5: 2 cases (0 or 4 light) = 2/16 = 12.5%");
+       // System.out.println("- Roll 5: 2 cases (0 or 4 light) = 2/16 = 12.5%");
+        System.out.println("- Roll 4: 1 cases (4 drak or 0 light) = 1/16 = 6.25%");
+        System.out.println("- Roll 5: 1 cases (0 dark or 4 light) = 1/16 = 6.25%");
     }
     
     /**
@@ -115,7 +123,8 @@ public class Dice {
             }
         }
         
-        int result = (lightSide == 0 || lightSide == 4) ? 5 : lightSide;
+      //  int result = (lightSide == 0 || lightSide == 4) ? 5 : lightSide;
+        int result = (lightSide == 0 ) ? 5 : lightSide;
         System.out.printf("-> Result: %d\n", result);
         return result;
     }

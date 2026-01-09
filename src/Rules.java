@@ -197,7 +197,7 @@ public static void checkAndPenalizeSpecialHouses(Board board, PlayerType player)
     List<Piece> pieces = board.getPieces(player);
     
     for (Piece piece : pieces) {
-        if (piece.getState() == PieceState.WAITING_EXACT_ROLL && 
+        if (//piece.getState() == PieceState.WAITING_EXACT_ROLL && 
             piece.getNeedsExactRoll() != null) {
             
             int position = piece.getPosition();
@@ -319,23 +319,27 @@ private static void applySpecialCellRules(Board board, Piece piece, int position
             // يحتاج رمية 3 بالضبط للخروج في الدور القادم
             // إذا لم يحصل على 3، سيعود للـ Rebirth
             piece.setNeedsExactRoll(3);
-            piece.setState(PieceState.WAITING_EXACT_ROLL);
+           
+            piece.setState(PieceState.ON_BOARD);
+            // piece.setState(PieceState.WAITING_EXACT_ROLL);
             System.out.println("→ " + piece + " inside the fact house, need three moves to finish");
             break;
             
-        case RE_ATOUM:  // بيت إعادة أتوم (29)
+            case RE_ATOUM:  // بيت إعادة أتوم (29)
             // يحتاج رمية 2 بالضبط للخروج في الدور القادم
             // إذا لم يحصل على 2، سيعود للـ Rebirth
             piece.setNeedsExactRoll(2);
-            piece.setState(PieceState.WAITING_EXACT_ROLL);
+            piece.setState(PieceState.ON_BOARD);
+        //    piece.setState(PieceState.WAITING_EXACT_ROLL);
             System.out.println("→ " + piece + " inside atom house, need two moves to finish");
             break;
             
-        case HORUS:  // بيت حورس (30)
+            case HORUS:  // بيت حورس (30)
             // يحتاج أي رمية للخروج في الدور القادم
             // إذا لم يُحرك في الدور القادم، سيعود للـ Rebirth
             piece.setNeedsExactRoll(1);  // أي رمية ستكون >= 1
-            piece.setState(PieceState.WAITING_EXACT_ROLL);
+            piece.setState(PieceState.ON_BOARD);
+          //  piece.setState(PieceState.WAITING_EXACT_ROLL);
             System.out.println("→ " + piece + " inside horus house, any move to finish");
             break;
             
@@ -360,7 +364,7 @@ public static void checkSpecialHousePenalties(Board board, PlayerType player) {
     List<Piece> pieces = board.getPieces(player);
     
     for (Piece piece : pieces) {
-        if (piece.getState() == PieceState.WAITING_EXACT_ROLL && 
+        if (//piece.getState() == PieceState.WAITING_EXACT_ROLL && 
             piece.getNeedsExactRoll() != null) {
             
             int position = piece.getPosition();
