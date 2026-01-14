@@ -119,7 +119,8 @@ private void playHumanTurn() {
         Rules.penalizeSpecialHouses(
             gameState.getBoard(), 
             gameState.getCurrentPlayer(), 
-            null
+            null,
+            false
         );
         
         gameState.changeTurn();
@@ -153,7 +154,8 @@ private void playHumanTurn() {
     Rules.penalizeSpecialHouses(
         gameState.getBoard(), 
         gameState.getCurrentPlayer(), 
-        selectedMove
+        selectedMove,
+        false
     );
     
     gameState.changeTurn();
@@ -223,7 +225,8 @@ private void playAITurn() {
         Rules.penalizeSpecialHouses(
             gameState.getBoard(), 
             gameState.getCurrentPlayer(), 
-            null
+            null,
+            false
         );
         
         gameState.changeTurn();
@@ -239,7 +242,9 @@ private void playAITurn() {
         Rules.penalizeSpecialHouses(
             gameState.getBoard(), 
             gameState.getCurrentPlayer(), 
-            null
+            null,
+            false
+
         );
         
         gameState.changeTurn();
@@ -253,7 +258,8 @@ private void playAITurn() {
     Rules.penalizeSpecialHouses(
         gameState.getBoard(), 
         gameState.getCurrentPlayer(), 
-        bestMove
+        bestMove,
+        false
     );
     
     gameState.changeTurn();

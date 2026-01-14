@@ -222,7 +222,10 @@ public static void checkAndPenalizeSpecialHouses(Board board, PlayerType player)
  * تطبيق حركة على الرقعة
  * @return true إذا نجحت الحركة
  */
-public static boolean applyMove(Board board, Move move) {
+ public static boolean applyMove(Board board, Move move) {
+        return applyMove(board, move, true);  // silent mode للمحاكاة
+ }
+public static boolean applyMove(Board board, Move move,boolean silent) {
     if (move == null) return false;
 
     Piece piece = move.getPiece();
@@ -238,8 +241,10 @@ public static boolean applyMove(Board board, Move move) {
         piece.setPosition(0);
         piece.setState(PieceState.FINISHED);
         piece.setNeedsExactRoll(null);
-
+        
+         if (!silent) {
         System.out.println("→ " + piece + " finished and exited the board!");
+         }
         return true;
     }
 
@@ -270,8 +275,8 @@ public static boolean applyMove(Board board, Move move) {
         board.getCell(fromPos).setOccupant(opponent);
 
         // تطبيق قواعد المربعات الخاصة
-        applySpecialCellRules(board, piece, toPos);
-        applySpecialCellRules(board, opponent, fromPos);
+        applySpecialCellRules(board, piece, toPos,silent);
+        applySpecialCellRules(board, opponent, fromPos,silent);
 
         return true;
     }
@@ -294,7 +299,7 @@ public static boolean applyMove(Board board, Move move) {
     board.getCell(toPos).setOccupant(piece);
 
     // تطبيق قواعد المربعات الخاصة
-    applySpecialCellRules(board, piece, toPos);
+    applySpecialCellRules(board, piece, toPos,silent);
 
     return true;
 }
@@ -305,14 +310,17 @@ public static boolean applyMove(Board board, Move move) {
 /**
  * تطبيق قواعد المربعات الخاصة
  */
-private static void applySpecialCellRules(Board board, Piece piece, int position) {
+// private static void applySpecialCellRules(Board board, Piece piece, int position) {
+private static void applySpecialCellRules(Board board, Piece piece, int position, boolean silent) {
     CellType cellType = board.getCell(position).getType();
     
     switch (cellType) {
         case WATER:  // بيت الماء (27)
             // العودة فوراً إلى بيت البعث
             returnToRebirth(board, piece);
-            System.out.println("→ " + piece + " fall in to the water, your block return to home");
+             if (!silent) {
+                System.out.println("→ " + piece + " fall in to the water, your block return to home");
+             }
             break;
             
         case THREE_TRUTHS:  // بيت الحقائق الثلاث (28)
@@ -322,7 +330,9 @@ private static void applySpecialCellRules(Board board, Piece piece, int position
            
             piece.setState(PieceState.ON_BOARD);
             // piece.setState(PieceState.WAITING_EXACT_ROLL);
+            if (!silent) {
             System.out.println("→ " + piece + " inside the fact house, need three moves to finish");
+            }
             break;
             
             case RE_ATOUM:  // بيت إعادة أتوم (29)
@@ -331,24 +341,32 @@ private static void applySpecialCellRules(Board board, Piece piece, int position
             piece.setNeedsExactRoll(2);
             piece.setState(PieceState.ON_BOARD);
         //    piece.setState(PieceState.WAITING_EXACT_ROLL);
+            if (!silent) {
             System.out.println("→ " + piece + " inside atom house, need two moves to finish");
+            }
             break;
             
-            case HORUS:  // بيت حورس (30)
+         case HORUS:  // بيت حورس (30)
             // يحتاج أي رمية للخروج في الدور القادم
             // إذا لم يُحرك في الدور القادم، سيعود للـ Rebirth
             piece.setNeedsExactRoll(1);  // أي رمية ستكون >= 1
             piece.setState(PieceState.ON_BOARD);
           //  piece.setState(PieceState.WAITING_EXACT_ROLL);
+          if (!silent) {
             System.out.println("→ " + piece + " inside horus house, any move to finish");
+          }
             break;
             
         case HAPPINESS:  // بيت السعادة (26)
-            System.out.println("→ " + piece + " inside happy house!");
-            break;
+        if (!silent) {
+          System.out.println("→ " + piece + " inside happy house!");
+         }
+        break;
             
         case REBIRTH:  // بيت البعث (15)
+         if (!silent) {
             System.out.println("→ " + piece + " inside the rebirth house");
+         }
             break;
             
         default:
@@ -482,7 +500,7 @@ public static Board applyMoveCloned(Board board, Move move) {
  * معاقبة القطع في البيوت الخاصة إذا لم تتحرك
  * يُستدعى في نهاية الدور
  */
-public static void penalizeSpecialHouses(Board board, PlayerType player, Move appliedMove) {
+public static void penalizeSpecialHouses(Board board, PlayerType player, Move appliedMove,boolean silent) {
     List<Piece> pieces = board.getPieces(player);
     
     for (Piece piece : pieces) {
@@ -503,8 +521,10 @@ public static void penalizeSpecialHouses(Board board, PlayerType player, Move ap
             cellType == CellType.RE_ATOUM || 
             cellType == CellType.HORUS) {
             
-            System.out.println("→ " + piece + " didn't move from special house, returning to rebirth");
-            returnToRebirth(board, piece);
+    if (!silent) {  // أضف هذا الشرط
+       System.out.println("→ " + piece + " didn't move from special house, returning to rebirth");
+        }
+           returnToRebirth(board, piece);
         }
     }
 }
