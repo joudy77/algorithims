@@ -1,7 +1,4 @@
-// ==================== 4. NodeType.java ====================
-/**
- * تعداد يمثل نوع العقدة في شجرة Expectiminimax
- */
+
 public enum NodeType {
     MAX("maxxer node"),
     MIN("minner node"),

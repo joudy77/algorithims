@@ -1,15 +1,12 @@
-// ==================== Move.java ====================
-/**
- * Represents a move in the game
- */
+
 public class Move {
 
     private final Piece piece;
     private final int fromPosition;
     private final int toPosition;
     private final int steps;
-    private final boolean isSwap;  // Is this a swap with opponent piece?
-    private final boolean isExit;  // Does the piece exit the board?
+    private final boolean isSwap;
+    private final boolean isExit;
 
     public Move(Piece piece, int steps) {
         this.piece = piece;
@@ -30,7 +27,6 @@ public class Move {
         this.isExit = isExit;
     }
 
-    // ===== Getters =====
     public Piece getPiece() { return piece; }
     public int getFromPosition() { return fromPosition; }
     public int getToPosition() { return toPosition; }
@@ -57,10 +53,6 @@ public class Move {
             piece.toString(), fromPosition, toPosition
         );
     }
-
-    /**
-     * Detailed description of the move (used in UI)
-     */
     public String getDetailedDescription() {
         StringBuilder sb = new StringBuilder();
         sb.append("Move: ").append(piece.toString());

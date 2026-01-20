@@ -1,45 +1,25 @@
-// ==================== Main.java ====================
-import java.util.Scanner;
 
-/**
- * Main class to run the Senet game
- *
- * Artificial Intelligence Search Algorithms Project
- * Damascus University - Faculty of Information Technology
- * Artificial Intelligence Department
- *
- * Implementation of the ancient Egyptian game Senet using:
- * - Object-Oriented Programming (OOP)
- * - Expectiminimax algorithm
- * - Heuristic Evaluation Function
- */
+import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-
-        // Display main menu
         displayMainMenu();
-
-        // Choose mode
         System.out.print("\nChoose game mode (1-4): ");
         int choice = getIntInput(scanner, 1, 4);
 
         switch (choice) {
             case 1:
-                // Normal play
+
                 playGame(3, false, scanner);
                 break;
             case 2:
-                // Play with AI details
                 playGame(3, true, scanner);
                 break;
             case 3:
-                // Select difficulty
                 selectDifficulty(scanner);
                 break;
             case 4:
-                // Show probability table
                 Dice.printProbabilityTable();
                 System.out.print("\nPress Enter to return...");
                 scanner.nextLine();
@@ -49,10 +29,6 @@ public class Main {
 
         scanner.close();
     }
-
-    /**
-     * Display main menu
-     */
     private static void displayMainMenu() {
         System.out.println("\n");
         System.out.println("╔═══════════════════════════════════════════════════════════════╗");
@@ -60,12 +36,6 @@ public class Main {
         System.out.println("║                     Senet Game                                ║");
         System.out.println("║               Ancient Egyptian Board Game                     ║");
         System.out.println("║                                                               ║");
-//        System.out.println("╠═══════════════════════════════════════════════════════════════╣");
-//        System.out.println("║                                                               ║");
-//        System.out.println("║  Artificial Intelligence Search Algorithms Project            ║");
-//        System.out.println("║  Damascus University - Faculty of IT                          ║");
-//        System.out.println("║  Artificial Intelligence Department                           ║");
-//        System.out.println("║                                                               ║");
         System.out.println("╠═══════════════════════════════════════════════════════════════╣");
         System.out.println("║                     Choose Game Mode:                         ║");
         System.out.println("║                                                               ║");
@@ -76,10 +46,6 @@ public class Main {
         System.out.println("║                                                               ║");
         System.out.println("╚═══════════════════════════════════════════════════════════════╝");
     }
-
-    /**
-     * Select difficulty level
-     */
     private static void selectDifficulty(Scanner scanner) {
         System.out.println("\n╔═══════════════════════════════════════════════════════════════╗");
         System.out.println(  "║                    Select Difficulty Level                    ║");
@@ -89,11 +55,10 @@ public class Main {
         System.out.println(  "║  3. Hard    (Depth = 4)                                       ║");
         System.out.println(  "║  4. Expert  (Depth = 5)                                       ║");
         System.out.println(  "╚═══════════════════════════════════════════════════════════════╝");
-
         System.out.print("\nChoose level (1-4): ");
         int level = getIntInput(scanner, 1, 4);
 
-        int depth = level + 1; // 2,3,4,5
+        int depth = level + 1;
 
         System.out.print("Show AI details? (y/n): ");
         String showDetails = scanner.nextLine().trim().toLowerCase();
@@ -101,10 +66,6 @@ public class Main {
 
         playGame(depth, verbose, scanner);
     }
-
-    /**
-     * Start the game
-     */
     private static void playGame(int depth, boolean showAIDetails, Scanner scanner) {
         GameController controller = new GameController(depth, showAIDetails);
         controller.startGame();
@@ -117,7 +78,7 @@ public class Main {
         } else {
             System.out.println("\n╔═══════════════════════════════════════════════════════════════╗");
             System.out.println("║                                                               ║");
-            System.out.println("║               Thank you for playing! Goodbye 👋              ║");
+            System.out.println("║               Thank you for playing! Goodbye               ║");
             System.out.println("║                                                               ║");
             System.out.println("╚═══════════════════════════════════════════════════════════════╝\n");
         }
@@ -125,9 +86,6 @@ public class Main {
         controller.close();
     }
 
-    /**
-     * Read valid integer input
-     */
     private static int getIntInput(Scanner scanner, int min, int max) {
         while (true) {
             try {
@@ -144,36 +102,4 @@ public class Main {
         }
     }
 
-//    /**
-//     * Print project information
-//     */
-//    public static void printProjectInfo() {
-//        System.out.println("\n╔═══════════════════════════════════════════════════════════════╗");
-//        System.out.println("║                     Project Information                      ║");
-//        System.out.println("╠═══════════════════════════════════════════════════════════════╣");
-//        System.out.println("║  Course: Intelligent Search Algorithms                       ║");
-//        System.out.println("║  University: Damascus University                              ║");
-//        System.out.println("║  Faculty: Information Technology                              ║");
-//        System.out.println("║  Department: Artificial Intelligence                          ║");
-//        System.out.println("║                                                               ║");
-//        System.out.println("║  Game: Senet                                                  ║");
-//        System.out.println("║  Algorithm: Expectiminimax                                    ║");
-//        System.out.println("║                                                               ║");
-//        System.out.println("║  Components:                                                  ║");
-//        System.out.println("║  • PlayerType.java                                           ║");
-//        System.out.println("║  • CellType.java                                             ║");
-//        System.out.println("║  • PieceState.java                                           ║");
-//        System.out.println("║  • NodeType.java                                             ║");
-//        System.out.println("║  • Piece.java                                                ║");
-//        System.out.println("║  • Cell.java                                                 ║");
-//        System.out.println("║  • Board.java                                                ║");
-//        System.out.println("║  • Dice.java                                                 ║");
-//        System.out.println("║  • Move.java                                                 ║");
-//        System.out.println("║  • Rules.java                                                ║");
-//        System.out.println("║  • GameState.java                                            ║");
-//        System.out.println("║  • SenetAI.java                                              ║");
-//        System.out.println("║  • GameController.java                                       ║");
-//        System.out.println("║  • Main.java                                                 ║");
-//        System.out.println("╚═══════════════════════════════════════════════════════════════╝");
-//    }
 }

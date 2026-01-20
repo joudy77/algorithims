@@ -1,13 +1,10 @@
-// ==================== Piece.java ====================
-/**
- * فئة تمثل حجر اللعب
- */
+
 public class Piece {
     private final int id;
     private final PlayerType owner;
-    private int position;  // 1-30, 0 يعني خرج من اللعبة
+    private int position;
     private PieceState state;
-    private Integer needsExactRoll;  // null أو 2 أو 3 للمربعات الخاصة
+    private Integer needsExactRoll;
     
     public Piece(int id, PlayerType owner, int position) {
         this.id = id;
@@ -17,7 +14,7 @@ public class Piece {
         this.needsExactRoll = null;
     }
     
-    // Copy constructor للنسخ العميق
+
     public Piece(Piece other) {
         this.id = other.id;
         this.owner = other.owner;
@@ -26,14 +23,14 @@ public class Piece {
         this.needsExactRoll = other.needsExactRoll;
     }
     
-    // Getters
+
     public int getId() { return id; }
     public PlayerType getOwner() { return owner; }
     public int getPosition() { return position; }
     public PieceState getState() { return state; }
     public Integer getNeedsExactRoll() { return needsExactRoll; }
     
-    // Setters
+
     public void setPosition(int position) { 
         this.position = position; 
     }
