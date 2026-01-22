@@ -1,5 +1,11 @@
 
+package AI;
+
 import java.util.*;
+import data_model.*;
+import game_logic.Board;
+import game_logic.Dice;
+import game_logic.GameState;
 
 
 public class SenetAI {
@@ -258,7 +264,7 @@ public class SenetAI {
         int pos = piece.getPosition();
         
         CellType cellType = board.getC(pos).getType();
-        if (cellType == CellType.HAPPINESS || 
+        if (cellType == CellType.HAPPINESS ||
             cellType == CellType.THREE_TRUTHS ||
             cellType == CellType.RE_ATOUM || 
             cellType == CellType.HORUS) {

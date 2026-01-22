@@ -1,3 +1,12 @@
+package control;
+
+import AI.SenetAI;
+import data_model.Move;
+import data_model.PlayerType;
+import game_logic.Board;
+import game_logic.Dice;
+import game_logic.GameState;
+import game_logic.Rules;
 
 import java.util.*;
 

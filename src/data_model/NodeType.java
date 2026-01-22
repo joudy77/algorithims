@@ -1,3 +1,4 @@
+package data_model;
 
 public enum NodeType {
     MAX("maxxer node"),

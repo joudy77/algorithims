@@ -1,3 +1,8 @@
+package game_logic;
+
+import data_model.Move;
+import data_model.Piece;
+import data_model.PlayerType;
 
 public class GameState {
 

@@ -1,3 +1,4 @@
+package data_model;
 
 public enum PlayerType {
     WHITE("white", "W"),  // الكمبيوتر

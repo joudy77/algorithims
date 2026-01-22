@@ -1,3 +1,9 @@
+package game_logic;
+
+import data_model.Cell;
+import data_model.CellType;
+import data_model.Piece;
+import data_model.PlayerType;
 
 import java.util.*;
 

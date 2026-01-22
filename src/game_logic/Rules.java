@@ -1,3 +1,6 @@
+package game_logic;
+
+import data_model.*;
 
 import java.util.*;
 

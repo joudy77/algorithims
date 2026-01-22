@@ -1,7 +1,6 @@
+package data_model;
 
-
-public class
-Cell {
+public class Cell {
 
     private final int index;
     private final CellType type;

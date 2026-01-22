@@ -1,3 +1,4 @@
+package data_model;
 
 public enum CellType {
     NORMAL(0, "Normal"),

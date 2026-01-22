@@ -1,3 +1,4 @@
+package data_model;
 
 public enum PieceState {
     ON_BOARD("on the board"),

@@ -1,3 +1,4 @@
+package data_model;
 
 public class Piece {
     private final int id;

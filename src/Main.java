@@ -1,4 +1,7 @@
 
+import control.GameController;
+import game_logic.Dice;
+
 import java.util.Scanner;
 public class Main {
 
@@ -10,7 +13,6 @@ public class Main {
 
         switch (choice) {
             case 1:
-
                 playGame(3, false, scanner);
                 break;
             case 2:
